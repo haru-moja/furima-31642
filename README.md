@@ -3,7 +3,7 @@
 |---|---|---|
 |nickname|string|null: false|
 |email|string|null: false|
-|password|string|null: false|
+|encrypted_password|string|null: false|
 |last_name|string|null: false|
 |first_name|string|null: false|
 |last_name_kana|string|null: false|
@@ -51,7 +51,7 @@
 |postal_code|string|null: false|
 |prefectures_id|integer|null: false|
 |address|string|null: false|
-|building_name|string|null: false|
+|building_name|string||
 |phone_number|string|null: false|
 |purchase|references|null: false, foreign_key: true|
 ### Association

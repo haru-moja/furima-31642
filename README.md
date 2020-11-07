@@ -14,6 +14,7 @@
 - has_many :items
 <br>
 <br>
+
 ## itemsテーブル
 | Column | Type | Options |
 |---|---|---|
@@ -31,6 +32,7 @@
 - belongs_to :user
 <br>
 <br>
+
 ## purchasesテーブル
 | Column | Type | Options |
 |---|---|---|
@@ -42,6 +44,7 @@
 - has_one :address
 <br>
 <br>
+
 ## addressesテーブル
 | Column | Type | Options |
 |---|---|---|

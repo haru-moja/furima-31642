@@ -25,6 +25,11 @@ RSpec.describe Item, type: :model do
     @item.valid?
     expect(@item.errors.full_messages).to include("Category can't be blank")
   end
+  it 'category_idに1が選択されている場合は保存できない' do
+    @item.category_id = 1
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Category must be other than 1")
+  end
   it 'status_idが空だと登録できない' do
     @item.status_id = nil
     @item.valid?
@@ -35,15 +40,30 @@ RSpec.describe Item, type: :model do
     @item.valid?
     expect(@item.errors.full_messages).to include("Shipping cost can't be blank")
   end
+  it 'shipping_cost_idに1が選択されている場合は保存できない' do
+    @item.shipping_cost_id = 1
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Shipping cost must be other than 1")
+  end
   it 'prefectures_idが空だと登録できない' do
     @item.prefectures_id = nil
     @item.valid?
     expect(@item.errors.full_messages).to include("Prefectures can't be blank")
   end
+  it 'prefectures_idに1が選択されている場合は保存できない' do
+    @item.prefectures_id = 1
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Prefectures must be other than 1")
+  end
   it 'days_to_ship_idが空だと登録できない' do
     @item.days_to_ship_id = nil
     @item.valid?
     expect(@item.errors.full_messages).to include("Days to ship can't be blank")
+  end
+  it 'days_to_ship_idに1が選択されている場合は保存できない' do
+    @item.days_to_ship_id = 1
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Days to ship must be other than 1")
   end
   it 'priceが空だと登録できない' do
     @item.price = nil
@@ -55,7 +75,16 @@ RSpec.describe Item, type: :model do
     @item.valid?
     expect(@item.errors.full_messages).to include("Price 入力値が¥300~¥9,999,999の範囲外です")
   end
-
+  it 'priceの値が300~9,999,999でないと登録できない' do
+    @item.price = 10000000
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Price 入力値が¥300~¥9,999,999の範囲外です")
+  end
+  it 'priceが全角数字だと登録できない' do
+    @item.price = "１２３４"
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Price 入力値が¥300~¥9,999,999の範囲外です")
+  end
   it 'imageが空だと登録できない' do
     @item.image = nil
     @item.valid?

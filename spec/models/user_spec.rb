@@ -40,8 +40,9 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('Password is invalid')
     end
     it 'encrypted_passwordが確認用passwordと同一でなければ登録できない' do
-      @user.password_confirmation = '111aaa'
+      @user.password_confirmation = '111aa2'
       @user.valid?
+      binding.pry
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
     it 'first_nameが空だと登録できない' do

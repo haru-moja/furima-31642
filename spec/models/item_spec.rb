@@ -45,15 +45,15 @@ RSpec.describe Item, type: :model do
     @item.valid?
     expect(@item.errors.full_messages).to include("Shipping cost must be other than 1")
   end
-  it 'prefectures_idが空だと登録できない' do
-    @item.prefectures_id = nil
+  it 'prefecture_idが空だと登録できない' do
+    @item.prefecture_id = nil
     @item.valid?
-    expect(@item.errors.full_messages).to include("Prefectures can't be blank")
+    expect(@item.errors.full_messages).to include("Prefecture can't be blank")
   end
-  it 'prefectures_idに1が選択されている場合は保存できない' do
+  it 'prefecture_idに1が選択されている場合は保存できない' do
     @item.prefectures_id = 1
     @item.valid?
-    expect(@item.errors.full_messages).to include("Prefectures must be other than 1")
+    expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
   end
   it 'days_to_ship_idが空だと登録できない' do
     @item.days_to_ship_id = nil

@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
+  before_action :set_message, only: [:show, :edit, :update]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -19,16 +20,13 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def edit
-    @item = Item.find(params[:id])
     redirect_to new_user_session_path unless user_signed_in? && current_user.id == @item.user_id
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to root_path
     else
@@ -44,5 +42,9 @@ class ItemsController < ApplicationController
 
   def move_to_index
     redirect_to new_user_session_path unless user_signed_in?
+  end
+
+  def set_message
+    @item = Item.find(params[:id])
   end
 end

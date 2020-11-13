@@ -4,7 +4,6 @@ class PurchasesController < ApplicationController
   before_action :move_to_index
   before_action :move_to_root
   def index
-    binding.pry
     @order_form = OrderForm.new
   end
   
@@ -12,7 +11,6 @@ class PurchasesController < ApplicationController
     @order_form = OrderForm.new(order_form_params)
     if @order_form.valid?
       pay_item
-      binding.pry
       @order_form.save
       redirect_to root_path
     else

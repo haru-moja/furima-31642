@@ -63,10 +63,5 @@ RSpec.describe OrderForm, type: :model do
       @order.valid?
       expect(@order.errors.full_messages).to include("User can't be blank")
     end
-    it 'purchase_idが空だと登録できないこと' do
-      @order.purchase_id = nil
-      @order.valid?
-      expect(@order.errors.full_messages).to include("Purchase can't be blank")
-    end
   end
 end
